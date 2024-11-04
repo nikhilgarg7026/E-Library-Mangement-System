@@ -1,0 +1,121 @@
+.container {
+    max-width: 500px; /* Reduced max width for better responsiveness */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem; /* Adjusted font size */
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem; /* Adjusted font size */
+  }
+  
+  .label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1rem; /* Adjusted font size */
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  .bookList {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px; /* Added margin for separation */
+    border-top: 1px solid #ccc; /* Added border for visual separation */
+    padding-top: 10px; /* Padding above book list */
+  }
+  
+  .bookItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+  }
+  
+  .bookImage {
+    width: 50px;
+    height: auto;
+    margin-right: 15px;
+  }
+  
+  .bookDetails {
+    flex-grow: 1;
+  }
+  
+  .deleteButton {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .deleteButton:hover {
+    background-color: #c82333;
+  }
+  
+  .messagebox {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    display: flex; /* Use flexbox for centering content */
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    position: fixed; /* Fix the position relative to the viewport */
+    bottom: 20px; /* Distance from the bottom of the viewport */
+    right: 20px; /* Distance from the right of the viewport */
+    z-index: 1000; /* Ensure it is on top of other elements */
+    max-width: 300px; /* Limit the width of the message box */
+    border-radius: 12px; /* Rounded corners for a softer look */
+    padding: 15px; /* Inner padding for better spacing */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    border: 2px solid #007bff; /* Blue border for definition */
+    transition: opacity 0.3s ease-in-out; /* Smooth fade effect on visibility */
+  }
+  
+  /* Message box content styling */
+  .message-box {
+    width: 100%; /* Make sure it takes full width of parent */
+  }
+  
+  /* Success message styling */
+  .message-box.success {
+    color: #155724; /* Text color for success */
+  }
+  
+  /* Error message styling */
+  .message-box.error {
+    color: #721c24; /* Text color for error */
+  }
+  

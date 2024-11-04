@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int        @id @default(autoincrement())
+  name        String
+  email       String     @unique
+  password    String
+  userType    String     @default("user")
+  ownedBooks  OwnedBook[] // Books owned by the user (either free or purchased)
+  transactions Transaction[] // User's transaction history
+}
+
+model Book {
+  id            Int            @id @default(autoincrement())
+  title         String
+  author        String
+  image         String?        // Optional image
+  isbn          String         @unique
+  publishedDate DateTime?
+  link          String?
+  rating        Int?
+  price         Float?         // Price for paid books (optional)
+  status        String         @default("free")  // Book status: free or paid
+}
+
+
+model OwnedBook {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  bookId    Int
+  status    String   // "free", "purchased" - whether the book is free or purchased
+  purchasedOn DateTime?  // Optional: to track the purchase date for paid books
+  book      Book     @relation(fields: [bookId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Transaction {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  bookId    Int
+  status    String   // "paid", "free" - status of the transaction
+  amount    Float?   // Payment amount for paid books
+  date      DateTime @default(now())  // When the transaction occurred
+  user      User     @relation(fields: [userId], references: [id])
+  book      Book     @relation(fields: [bookId], references: [id])
+}
