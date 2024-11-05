@@ -14,6 +14,13 @@ const BookCard = ({ book }) => {
     return stars;
   };
 
+  const handleReadBookClick = (e) => {
+    if (book.status === 'free') {
+      e.preventDefault(); // Prevents Link from navigating to href
+      window.open(book.link, '_self'); // Opens the PDF link in the same page
+    }
+  };
+
   return (
     <div className={styles.card}>
       <div className={styles.cardImage}>
@@ -24,9 +31,13 @@ const BookCard = ({ book }) => {
       <div className={styles.cardRating}>
         {renderStars(book.rating)}
       </div>
-      <Link href={`/login`} className={styles.cardLink}>
-        Read Book
-      </Link>
+      <Link
+          href={book.link}
+          onClick={handleReadBookClick}
+          className={styles.cardLink}
+        >
+          Read Book
+        </Link>
     </div>
   );
 };

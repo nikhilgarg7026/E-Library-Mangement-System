@@ -19,8 +19,6 @@ model User {
   email       String     @unique
   password    String
   userType    String     @default("user")
-  ownedBooks  OwnedBook[] // Books owned by the user (either free or purchased)
-  transactions Transaction[] // User's transaction history
 }
 
 model Book {
@@ -37,23 +35,3 @@ model Book {
 }
 
 
-model OwnedBook {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  bookId    Int
-  status    String   // "free", "purchased" - whether the book is free or purchased
-  purchasedOn DateTime?  // Optional: to track the purchase date for paid books
-  book      Book     @relation(fields: [bookId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
-}
-
-model Transaction {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  bookId    Int
-  status    String   // "paid", "free" - status of the transaction
-  amount    Float?   // Payment amount for paid books
-  date      DateTime @default(now())  // When the transaction occurred
-  user      User     @relation(fields: [userId], references: [id])
-  book      Book     @relation(fields: [bookId], references: [id])
-}
